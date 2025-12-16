@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Modular Scoreboard — Blackjack / Poker</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Modular Scoreboard</h1>
+    <p class="tag">Simple Blackjack / Poker scorekeeper for GitHub Pages</p>
+  </header>
+
+  <main>
+    <section class="controls">
+      <div class="row">
+        <label>Mode:
+          <select id="mode-select">
+            <option value="blackjack">Blackjack</option>
+            <option value="poker">Poker</option>
+          </select>
+        </label>
+
+        <label>Initial points:
+          <input id="initial-points" type="number" value="5000" min="1">
+        </label>
+
+        <label>Round minimum (ante):
+          <input id="round-min" type="number" value="100" min="0">
+        </label>
+
+        <button id="start-game">Start Game</button>
+      </div>
+
+      <div class="row small">
+        <button id="add-player">+ Add Player</button>
+        <button id="save-state">💾 Save</button>
+        <button id="reset-state">Reset</button>
+        <span class="hint">Players: <span id="player-count">0</span> (min 2, max 8)</span>
+      </div>
+    </section>
+
+    <section class="pot">
+      <div>Pot: <strong id="pot-amount">0</strong></div>
+      <div class="muted">(Pot auto-collects the round minimum from each player when a round starts)</div>
+    </section>
+
+    <section id="players" class="players"></section>
+
+    <section class="actions">
+      <button id="collect-ante">Collect Ante (New Round)</button>
+      <button id="clear-storage">Clear Saved Data</button>
+    </section>
+
+    <template id="player-template">
+      <div class="player">
+        <div class="player-header">
+          <input class="player-name" type="text" value="Player">
+          <label class="dealer-label"><input class="dealer-radio" type="radio" name="dealer"> Dealer</label>
+        </div>
+        <div class="player-body">
+          <div class="score">Score: <span class="score-value">0</span></div>
+          <div class="controls-inline">
+            <button class="dec-100">-100</button>
+            <button class="dec-10">-10</button>
+            <button class="inc-10">+10</button>
+            <button class="inc-100">+100</button>
+          </div>
+        </div>
+        <div class="player-actions">
+          <button class="win-round">Win Round</button>
+          <button class="remove-player">Remove</button>
+        </div>
+      </div>
+    </template>
+
+  </main>
+
+  <footer>
+    <small>Built for GitHub Pages • Simple static UI • Autosaves locally</small>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
